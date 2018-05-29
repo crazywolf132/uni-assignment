@@ -201,8 +201,20 @@
     if (isset($_GET['Session']) && isset($_GET['PricePaid'])) {
       $session = $_GET['Session'];
       $pricePaid = $_GET['PricePaid'];
-      $timeStamp = time();
+      $timeStamp = strtotime('today UTC -10');
       
+      echo $today = date('d/m/Y h:i a e', strtotime('today UTC+10:00'));
+      echo $today_midnight = strtotime('today UTC+10:00');
+
+      echo"<br><br>";
+      echo date("d/m/Y h:i a");
+      echo"<br><br>";
+
+      date_default_timezone_set('Australia/Sydney');
+      echo date('Y-m-d H:i:a') . '<br/>';
+
+
+
       $statement = $dbh->prepare("
       INSERT INTO TICKETS (SessionID, PricePaid, TimeStamp)
       VALUES(?, ?, ?);
@@ -210,7 +222,7 @@
       $statement->bindValue(1, $session);
       $statement->bindValue(2, $pricePaid);
       $statement->bindValue(3, $timeStamp);
-      $statement->execute();
+      //$statement->execute();
       //TODO ALSO INSERT INTO THE MEMBER TICKETS COLUMN...
       echo "<h1 class='green-around-text'>Shit Works - You just bought a ticket to $session for $$pricePaid</h1>";
     } else {

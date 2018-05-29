@@ -125,7 +125,7 @@
                         
             while($row = $statement->fetch()) {
                 $ID = makeOutputSafe($row['TicketID']);
-                $Time = date("d/m/Y g:i a", makeOutputSafe($row['Bought']));
+                $Time = date("d/m/Y h:i a", makeOutputSafe($row['Bought']));
                 $Price = makeOutputSafe($row['PricePaid']);
                 $Online = makeOutputSafe($row['OnlinePurchase']);
                 ($Online == 'NULL') ? $Online = 0 : $Online = $Online;
@@ -170,9 +170,9 @@
     function showAllReportsScreen() {
         $theStatement = "";
         if (isset($_GET['search'])) {
-            $theStatement = "SELECT Tickets.SessionID AS SessionID, (1.1 / (1.8 + (SessionTime - Released)/604800) + 0.2) AS SessionLicnecePercent, STRFTIME('%Y-%m-%d %H:%M', Sessions.SessionTime, 'unixepoch', 'localtime') AS SessionTime,  RoomID, Title, Movies.Runtime, SeatsAvailable, COUNT(Tickets.TicketID) AS TicketsSold, NormalPrice, round(AVG(Tickets.PricePaid),2) as Average, round(SUM(PricePaid),2) as Revenue FROM Movies INNER JOIN Sessions using (MovieID) INNER JOIN Tickets USING (SessionID) WHERE Title LIKE ? GROUP BY Sessions.SessionID;";
+            $theStatement = "SELECT Tickets.SessionID AS SessionID, (1.1 / (1.8 + (SessionTime - Released)/604800) + 0.2) AS SessionLicnecePercent, SessionTime,  RoomID, Title, Movies.Runtime, SeatsAvailable, COUNT(Tickets.TicketID) AS TicketsSold, NormalPrice, round(AVG(Tickets.PricePaid),2) as Average, round(SUM(PricePaid),2) as Revenue FROM Movies INNER JOIN Sessions using (MovieID) INNER JOIN Tickets USING (SessionID) WHERE Title LIKE ? GROUP BY Sessions.SessionID;";
         } else {
-            $theStatement = "SELECT Tickets.SessionID AS SessionID, (1.1 / (1.8 + (SessionTime - Released)/604800) + 0.2) AS SessionLicnecePercent, STRFTIME('%Y-%m-%d %H:%M', Sessions.SessionTime, 'unixepoch', 'localtime') AS SessionTime,  RoomID, Title, Movies.Runtime, SeatsAvailable, COUNT(Tickets.TicketID) AS TicketsSold, NormalPrice, round(AVG(Tickets.PricePaid),2) as Average, round(SUM(PricePaid),2) as Revenue FROM Movies INNER JOIN Sessions using (MovieID) INNER JOIN Tickets USING (SessionID) GROUP BY Sessions.SessionID;";
+            $theStatement = "SELECT Tickets.SessionID AS SessionID, (1.1 / (1.8 + (SessionTime - Released)/604800) + 0.2) AS SessionLicnecePercent, SessionTime,  RoomID, Title, Movies.Runtime, SeatsAvailable, COUNT(Tickets.TicketID) AS TicketsSold, NormalPrice, round(AVG(Tickets.PricePaid),2) as Average, round(SUM(PricePaid),2) as Revenue FROM Movies INNER JOIN Sessions using (MovieID) INNER JOIN Tickets USING (SessionID) GROUP BY Sessions.SessionID;";
         }
         $dbh = connectToDatabase();
         echo
@@ -216,7 +216,7 @@
         
         while($row = $statement->fetch()){
             $SessionID = makeOutputSafe($row['SessionID']);
-            $SessionTime = makeOutputSafe($row['SessionTime']);
+            $SessionTime = date("d/m/Y h:i", makeOutputSafe($row['SessionTime']));
             $RoomID = makeOutputSafe($row['RoomID']);
             $Title = makeOutputSafe($row['Title']);
             $Runtime = makeOutputSafe($row['Runtime']);
@@ -268,6 +268,8 @@
             ");
             $tokens = explode("-", $_POST['movieDate']);
             $tokens_time = explode(":", $_POST['movieTime']);
+            var_dump($_POST['movieTime']);
+            var_dump($_POST['movieDate']);
             $time = strtotime("$tokens[2]-$tokens[1]-$tokens[0] $tokens_time[0]:$tokens_time[1]");
             $statement->bindValue(1, $_POST['movieID']);
             $statement->bindValue(2, $time);

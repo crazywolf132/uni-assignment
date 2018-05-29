@@ -169,13 +169,14 @@ function bookMovie() {
             <section id='ticketsSection'>
             ";
 
-            $statement = $dbh->prepare("SELECT SessionID, MovieID, Classification, RunTime, SeatsAvailable, NormalPrice AS Price, STRFTIME('%d %m %Y', SessionTime, 'unixepoch',  'localtime') AS SessionDate, STRFTIME('%H:%M', SessionTime, 'unixepoch',  'localtime') AS SessionTime FROM Sessions JOIN Movies USING (MovieID) where MovieID = $MovieID AND (SessionTime >= $today AND SessionTime <= $tomorrow)");
+            $statement = $dbh->prepare("SELECT SessionID, MovieID, Classification, RunTime, SeatsAvailable, NormalPrice AS Price, STRFTIME('%d %m %Y', SessionTime, 'unixepoch',  'localtime') AS SessionDate, SessionTime FROM Sessions JOIN Movies USING (MovieID) where MovieID = $MovieID AND (SessionTime >= $today AND SessionTime <= $tomorrow)");
             $statement->execute();
             while($row = $statement->fetch()) {
                 $MovieClassification = makeOutputSafe($row['Classification']);
                 $Price = makeOutputSafe($row['Price']);
                 $SessionID = makeOutputSafe($row['SessionID']);
-                $Time = makeOutputSafe($row['SessionTime']);
+                //$Time = makeOutputSafe($row['SessionTime']);
+                $Time = date("h:i a", makeOutputSafe($row['SessionTime']));
                 $Price_Send = str_replace('.', '%2E', $Price);
                 $AvaliableSeats = makeOutputSafe($row['SeatsAvailable']);
 
