@@ -1,3 +1,4 @@
+<?php include('assets/code/login/handler.php'); ?>
 <html>
   <?php include('assets/displays/head.php'); ?>
   <body>
@@ -13,7 +14,8 @@
               <a href="index.php"><li>HOME</li></a>
               <a href="sessions.php"><li>SESSIONS</li></a>
               <a href="#"><li id='active'>ALL</li></a>
-              <a href="login.php"><li>LOGIN</li></a>
+              <a href="report.php"><li>REPORT</li></a>
+              <?php loadNavChange(); ?>
             </ul>
           </nav>
           <nav class='mobile-only'>
@@ -23,17 +25,7 @@
           </nav>
         </section>
 
-        <section id='search'>
-          <div class='row'>
-            <div class='col-1'></div>
-            <div class='col-10'>
-              <form action='all.php' method='get'>
-                <input type='text' name='Search' placeholder="Search For Movie..." id='searchBar' class='searchBar' />
-              </form>
-            </div>
-            <div class='col-1'></div>
-          </div>
-        </section>
+        <?php include('assets/displays/searchBar.php'); ?>
         <br />
 
         <?php
@@ -51,11 +43,11 @@
         <div class="row">
           
           <?php
-          $next = $results + 1;
-          ($results == 0) ? $last=0 : $last = $results - 1;
-          echo"
-          <div class='col-6 text-center'><a href='?Page=$last'><button class='formButton'>Prev</button></a></div>
-          <div class='col-6 text-center'><a href='?Page=$next'><button class='formButton'>Next</button></a></div>
+            $next = $results + 1;
+            ($results == 0) ? $last=0 : $last = $results - 1;
+            echo"
+            <div class='col-6 text-center'><a href='?Page=$last'><button class='formButton'>Prev</button></a></div>
+            <div class='col-6 text-center'><a href='?Page=$next'><button class='formButton'>Next</button></a></div>
           "; ?>
 
         </div>

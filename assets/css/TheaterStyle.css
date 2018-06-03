@@ -82,6 +82,10 @@ a {
 	color: white;
 }
 
+.green-text {
+	color: #10ac84;
+}
+
 .green-around-text {
 	background-color: #10ac84;
 	color: black;
@@ -111,9 +115,23 @@ a {
 	border-radius: 5px;
 }
 
+.red-around-text {
+	background-color: #ee462b;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+}
+
 .pink {
 	background-color: #f368e0;
 	color: black;
+}
+
+.pink-around-text {
+	background-color: #f368e0;
+	color: black;
+	padding: 5px;
+	border-radius: 5px;
 }
 
 .aqua {
@@ -164,7 +182,7 @@ a {
 }
 
 .black-text {
-	color: #000;
+	color: #000!important;
 }
 
 /** USEFUL CLASSES **/
@@ -188,7 +206,7 @@ a {
 }
 
 .no-padding {
-	padding: 0px;
+	padding: 0px !important;
 }
 
 .grow {
@@ -217,7 +235,7 @@ a {
 }
 
 .full-width {
-	width: 100%;
+	width: 100% !important;
 }
 
 .inline {
@@ -529,6 +547,16 @@ th, td {
 	font-size: 1.2em;
 }
 
+.SessionMovieSelect {
+	border: none;
+	width: 100%;
+	padding: 16px;
+	font-size: 1.2em;
+	background: #303030;
+	color: white;
+	height: 2.7em;
+}
+
 /** DIV STYLING **/
 
 #content {
@@ -569,6 +597,11 @@ th, td {
 	height: 100%;
 }
 
+.left-float {
+	position: relative;
+	float: left;
+}
+
 .curved {
 	border-radius: 5px;
 }
@@ -586,6 +619,41 @@ th, td {
 	border-top-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 }
+
+.ratingOverlay-MA {
+	background: red;
+	color: white;
+}
+.ratingOverlay-R{
+	background: black;
+	color: white;
+}
+.ratingOverlay-M{
+	background: #0abde3;
+	color: white;
+}
+.ratingOverlay-PG{
+	background: yellow;
+	color: black;
+}
+.ratingOverlay-G{
+	background: #1dd1a1;
+	color: black;
+}
+.ratingOverlay-U{
+	background: #f0932b;
+	color: black;
+}
+
+[class*="ratingOverlay-"] {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	padding: 4px;
+	border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
 
 .next-week {
 	position: absolute;
@@ -629,6 +697,7 @@ th, td {
 	padding: 10px;
 	border-radius: 5px;
 	font-weight: bold;
+	cursor:pointer;
 }
 
 #RegisterButton {
@@ -641,6 +710,7 @@ th, td {
 	font-size: 1.2em;
 	text-decoration: none;
 	font-weight: bold;
+	cursor:pointer;
 }
 
 #active {
@@ -652,7 +722,7 @@ th, td {
 }
 
 .searchBar {
-	width: 100%;
+	width: 80%;
 	border: none;
 	background: #292636;
 	text-align: center;
@@ -663,10 +733,44 @@ th, td {
 	padding: 16px;
 }
 
+.selectGenre {
+	color: white;
+	background: #303030;
+	font-size: 1.2em;
+}
+
+.text-area {
+	background-color: #292636;
+	border: 1px solid white;
+	border-radius: 5px;
+	width: 100%;
+	color: white;
+	font-size: 1.2em;
+	font-family: "Museo Sans Rounded 500";
+}
+
+.drop-down {
+	background-color: #292636;
+	color: white;
+	font-size: 15px;
+	padding: 8px;
+}
+
 .ticketButton {
 	border-radius: 5px;
 	border: 2px solid #ee462b;
 	padding: 10px;
+}
+
+.ticketButton-selected {
+	border-radius: 5px;
+	border: 2px solid #10ac84;
+	padding: 10px;
+}
+
+.red-outline {
+	border-radius: 5px;
+	border: 2px solid #ee462b;
 }
 
 .liftOff {
@@ -681,6 +785,13 @@ th, td {
 
 .padding-small {
 	padding: 8px;
+}
+
+.fade-away {
+	visibility: hidden;
+	margin-top: -20px;
+	opacity: 0;
+	transition: visibility 0s 10s, opacity 10s linear;
 }
 
 

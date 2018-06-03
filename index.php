@@ -1,3 +1,10 @@
+<?php
+  include('assets/code/login/handler.php');
+  $cookieMessage = getCookieMessage();
+  if (isLoggedIn()) {
+    $user = loadUser();
+  }
+?>
 <html>
   <?php include('assets/displays/head.php'); ?>
   <body>
@@ -13,7 +20,10 @@
               <a href="#"><li id='active'>HOME</li></a>
               <a href="sessions.php"><li>SESSIONS</li></a>
               <a href="all.php"><li>ALL</li></a>
-              <a href="login.php"><li>LOGIN</li></a>
+              <a href="report.php"><li>REPORT</li></a>
+              <?php 
+                loadNavChange();
+              ?>
             </ul>
           </nav>
           <nav class='mobile-only'>
@@ -23,20 +33,15 @@
           </nav>
         </section>
 
-        <section id='search'>
-          <div class='row'>
-            <div class='col-1'></div>
-            <div class='col-10'>
-              <form action='all.php' method='get'>
-                <input type='text' name='Search' placeholder="Search For Movie..." id='searchBar' class='searchBar' />
-              </form>
-            </div>
-            <div class='col-1'></div>
-          </div>
-        </section>
+        <?php include('assets/displays/searchBar.php'); ?>
         <br />
 
         <section id='core'>
+          <?php
+            if ($cookieMessage){
+              echo '<a href="#"><div class="blue-around-text text-center white-text smr sml smb"><h3>'. $cookieMessage .'</h3></div></a>';
+            }
+          ?>
           <h3 class='primary-text text-center'>Latest Releases<h3>
           <hr class='white-hr' />
           <br />

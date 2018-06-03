@@ -1,7 +1,7 @@
 <?php // <--- do NOT put anything before this PHP tag
 // in PHP we can create our own functions to do whatever we need.
 // the benefit of using a function is that we can reduce duplicate code.
-
+date_default_timezone_set('Australia/Melbourne');
 // here is a function that will connect the Database
 // wherever we need to connect to the database we just call this function.
 function connectToDatabase()
@@ -83,8 +83,6 @@ function stringContains($haystack, $needle)
 {
 	return strpos($haystack, $needle) !== false;
 }
-
-
 
 // I strongly suggest you do not close the PHP tag in this file.
 // it can cause issues with setcookie() and header()

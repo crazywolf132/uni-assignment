@@ -1,6 +1,6 @@
 <?php 
+include('assets/displays/user.php'); 
 include('assets/code/helper.php'); 
-include('assets/displays/admin.php'); 
 include('assets/code/login/handler.php');
 
 if (isLoggedIn()) {
@@ -8,14 +8,10 @@ if (isLoggedIn()) {
 } else {
   header("Location: index.php");
 }
-
-if (!($user['Clearance'] == "Admin")) {
-  header("Location: index.php");
-}
 ?>
 <html>
   <?php include('assets/displays/head.php'); ?>
-  <body id='adminBackground'>
+  <body>
     <div class='row'>
       <div class='col-2 hide-mobile'></div>
       <div id='content' class='col-8 liftOff'>
@@ -46,6 +42,7 @@ if (!($user['Clearance'] == "Admin")) {
           <hr class='orange-hr' />
           <br />
           <?php pageHandler(); ?>
+          
         </section>
 
       </div>

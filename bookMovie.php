@@ -1,3 +1,9 @@
+<?php
+	include('assets/code/login/handler.php');
+	if (isLoggedIn()) {
+		$user = loadUser();
+	}
+?>
 <html>
   <?php include('assets/displays/head.php'); ?>
   <body>
@@ -14,7 +20,7 @@
               <a href="sessions.php"><li id='active'>SESSIONS</li></a>
               <a href="all.php"><li>ALL</li></a>
               <a href="report.php"><li>REPORT</li></a>
-              <a href="login.php"><li>LOGIN</li></a>
+              <?php loadNavChange(); ?>
             </ul>
           </nav>
           <nav class='mobile-only'>
@@ -24,21 +30,12 @@
           </nav>
         </section>
 
-        <section id='search'>
-          <div class='row'>
-            <div class='col-1'></div>
-            <div class='col-10'>
-              <form action='all.php' method='get'>
-                <input type='text' name='Search' placeholder="Search For Movie..." id='searchBar' class='searchBar' />
-              </form>
-            </div>
-            <div class='col-1'></div>
-          </div>
-        </section>
+        <?php include('assets/displays/searchBar.php'); ?>
         <br />
 
         <section id='core'>
-          <?php include("./assets/code/bookMovie.php"); bookMovie(); ?>
+          <?php include("./assets/code/bookMovie.php"); showMovieTimes(); ?>
+		  </div>
         </section>
 
       </div>
