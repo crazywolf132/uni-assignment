@@ -15,6 +15,7 @@
                     break;
                 case "3":
                     // Edit account info...
+                    editAccountInfo();
                     break;
                 case "4":
                     //Latest Tickets.
@@ -26,6 +27,26 @@
             displayNavBar(1);
             showHomeScreen();
         }
+    }
+
+    function editAccountInfo(){
+        echo "
+        <div class='row smr sml'>
+            <div class='col-2'></div>
+            <div class='col-8 no-padding'>
+                <h1 class='white-text text-center'>Change Password</h1>
+                <hr class='white-hr' />
+                <br />
+                <form method='post'>
+                    <input type='password' name='old' placeholder='Old Password' class='inputBox' />
+                    <input type='password' name='old' placeholder='New Passowrd' class='inputBox' />
+                    <input type='password' name='old' placeholder='Confirm Password' class='inputBox' />
+                    <button type='submit' class='formButton'>Change</button>
+                </form>
+            </div>
+            <div class='col-2'></div>
+        
+        ";
     }
 
     function displayNavBar($var) {
