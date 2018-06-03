@@ -30,6 +30,11 @@
     }
 
     function editAccountInfo(){
+        if (isset($_POST['old'])){
+            $old = $_POST['old'];
+            $new = $_POST['new'];
+            $confirm = $_POST['confirm'];
+        }
         echo "
         <div class='row smr sml'>
             <div class='col-2'></div>
@@ -39,13 +44,12 @@
                 <br />
                 <form method='post'>
                     <input type='password' name='old' placeholder='Old Password' class='inputBox' />
-                    <input type='password' name='old' placeholder='New Passowrd' class='inputBox' />
-                    <input type='password' name='old' placeholder='Confirm Password' class='inputBox' />
+                    <input type='password' name='new' placeholder='New Passowrd' class='inputBox' />
+                    <input type='password' name='confirm' placeholder='Confirm Password' class='inputBox' />
                     <button type='submit' class='formButton'>Change</button>
                 </form>
             </div>
             <div class='col-2'></div>
-        
         ";
     }
 
