@@ -54,6 +54,7 @@
     }
 
     function displayNavBar($var) {
+        $user = loadUser();
         echo "
         <section id='adminNav'>
             <nav>
@@ -62,6 +63,11 @@
                     <a href='?Screen=2'><li"; if($var == 2){echo " id='active'";} echo ">Tickets</li></a>
                     <a href='?Screen=3'><li"; if($var == 3){echo " id='active'";} echo ">Edit Account</li></a>
                     <a href='?Screen=4'><li"; if($var == 4){echo " id='active'";} echo ">Latest Tickets</li></a>
+                    "; 
+                    if ($user['Clearance'] == "Admin") {
+                        echo "<a href='admin.php'><li>Admin</li></a>";
+                    }
+                    echo"
                 </ul>
             </nav>
         </section>

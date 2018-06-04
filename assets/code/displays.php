@@ -255,66 +255,6 @@
         </a>
       </div>
       ";
-
-      /*if ($Date == $today){
-        echo "<div class='movieItem col-3'>
-          <a href='ViewMovie.php?MovieID=$MovieID'><div class='text-image curved grow liftOff'>
-            <img class='movie-img' src='assets/img/movies/$MovieID.jpg' alt='$MovieID' />
-            <div class='$Color'>$MovieTime</div>
-          </div></a>
-        </div>";
-      } elseif ($today >= date("d m Y", strtotime('+1 days'))){
-        echo "<div class='movieItem col-3'>
-          <a href='ViewMovie.php?MovieID=$MovieID'><div class='text-image curved grow liftOff'>
-            <img class='movie-img' src='assets/img/movies/$MovieID.jpg' alt='$MovieID' />
-            <div class='next-week'>Tomorrow</div>
-          </div></a>
-        </div>";
-      } else {
-        echo "<div class='movieItem col-3'>
-          <a href='ViewMovie.php?MovieID=$MovieID'><div class='text-image curved grow liftOff'>
-            <img class='movie-img' src='assets/img/movies/$MovieID.jpg' alt='$MovieID' />
-            <div class='two-weeks'>Another Day</div>
-          </div></a>
-        </div>";
-      }*/
-    }
-  }
-
-  
-
-  function purchaseTicket() {
-    include('helper.php');
-    $dbh = connectToDatabase();
-    if (isset($_GET['Session']) && isset($_GET['PricePaid'])) {
-      $session = $_GET['Session'];
-      $pricePaid = $_GET['PricePaid'];
-      $timeStamp = strtotime('today UTC -10');
-      
-      echo $today = date('d/m/Y h:i a e', strtotime('today UTC+10:00'));
-      echo $today_midnight = strtotime('today UTC+10:00');
-
-      echo"<br><br>";
-      echo date("d/m/Y h:i a");
-      echo"<br><br>";
-
-      date_default_timezone_set('Australia/Sydney');
-      echo date('Y-m-d H:i:a') . '<br/>';
-
-
-
-      $statement = $dbh->prepare("
-      INSERT INTO TICKETS (SessionID, PricePaid, TimeStamp)
-      VALUES(?, ?, ?);
-      ");
-      $statement->bindValue(1, $session);
-      $statement->bindValue(2, $pricePaid);
-      $statement->bindValue(3, $timeStamp);
-      //$statement->execute();
-      //TODO ALSO INSERT INTO THE MEMBER TICKETS COLUMN...
-      echo "<h1 class='green-around-text'>Shit Works - You just bought a ticket to $session for $$pricePaid</h1>";
-    } else {
-      echo "<h1 class='red-around-text'>Woooah, backup... shit no work</h1>";
     }
   }
   

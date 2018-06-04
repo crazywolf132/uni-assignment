@@ -15,7 +15,6 @@
                     break;
                 case "3":
                     // This is the add session screen.
-                    
                     addSessionScreen();
                     break;
                 case "4":
